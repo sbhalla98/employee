@@ -6,6 +6,8 @@ export const EMPLOYEE_INFO_FETCH = 'EMPLOYEE_INFO_FETCH_PENDING';
 export const EMPLOYEE_INFO_FETCH_SUCCESS = 'EMPLOYEE_INFO_FETCH_SUCCESS';
 export const EMPLOYEE_INFO_FETCH_ERROR = 'EMPLOYEE_INFO_FETCH_ERROR';
 
+export const ADD_MEMBER = 'ADD_MEMBER';
+
 export function fetchInfoPending() {
     return {
         type: EMPLOYEE_FETCH
@@ -44,5 +46,11 @@ export function fetchInfoEError(error) {
     return {
         type: EMPLOYEE_INFO_FETCH_ERROR,
         errori: error
+    }
+}
+
+export function addmemberaction() {
+    return {
+        type: ADD_MEMBER
     }
 }

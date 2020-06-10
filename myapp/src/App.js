@@ -10,8 +10,8 @@ function App() {
   return (
   <Provider store={store}>
     <Router>
-    <Route path="/" component={Employee} /> 
-    <Route path="/emp/:id?" component={EmployeeInfo} />
+    <Route exact path="/" component={Employee} /> 
+    <Route exact path="/emp/:id?" component={EmployeeInfo} />
     </Router>
   </Provider>
   );
