@@ -1,4 +1,4 @@
-import {EMPLOYEE_FETCH, EMPLOYEE_FETCH_SUCCESS, EMPLOYEE_FETCH_ERROR,EMPLOYEE_INFO_FETCH,EMPLOYEE_INFO_FETCH_SUCCESS,EMPLOYEE_INFO_FETCH_ERROR, ADD_MEMBER} from './infoaction';
+import {EMPLOYEE_FETCH, EMPLOYEE_FETCH_SUCCESS, EMPLOYEE_FETCH_ERROR,EMPLOYEE_INFO_FETCH,EMPLOYEE_INFO_FETCH_SUCCESS,EMPLOYEE_INFO_FETCH_ERROR, ADD_MEMBER,ADD_MEMBER_ERROR,ADD_MEMBER_SUCCESS} from './infoaction';
 import { combineReducers } from 'redux'
 
 const initialState = {
@@ -13,7 +13,9 @@ const particularempstate = {
     success:false
 }
 const addmember ={
-    flag:false
+    flag:false,
+    response:"",
+    error:""
 }
 export function employeeInfoReducer(state = initialState, action) {
     switch(action.type) {
@@ -45,6 +47,16 @@ export function addmemberReducer(state = addmember, action) {
             return {
                 ...state,
                 flag: temp
+            }
+        case ADD_MEMBER_SUCCESS: 
+            return {
+                ...state,
+                response: action.data
+            }
+        case ADD_MEMBER_ERROR: 
+            return {
+                ...state,
+                response: action.error
             }
         default: 
             return state;

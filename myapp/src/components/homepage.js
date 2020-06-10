@@ -14,6 +14,7 @@ import Table from '@material-ui/core/Table';
 import Button from '@material-ui/core/Button';
 
 import Form from './form';
+import Header from './header';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,6 +38,7 @@ const MyComponent = (props) => {
         const emplist = useSelector(state=>state.employeeInfoReducer.list);
         return (
             <div className='container'>
+            <Header></Header>
             <div style={style}>It is loading</div>
             <table id="employeedetails" className={classes.table} aria-label="customized table">
                 <thead>

@@ -3,6 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import Addmember from '../redux/actionthree'; 
+import { useDispatch } from 'react-redux'
+
 import './form.css';
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,11 +17,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ColorTextFields() {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const name = useRef();
   const salary = useRef();
   const age = useRef();
   const handleSubmit = e => {
+    const obj ={
+        name:name.current.value,
+        salary:salary.current.value,
+        age:age.current.value
+    }
+    
+    dispatch(Addmember(JSON.stringify(obj)));
     console.log(name.current.value,salary.current.value,age.current.value);
   };
 
