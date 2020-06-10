@@ -1,0 +1,15 @@
+table,th,td{
+    border-radius: 2px;
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+table{
+    margin: 0 auto;
+    width: 50%;
+}
+th,td{
+    padding: 10px;
+}
+th{
+    background-color: #b0bec5;
+}
