@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import Addmember from '../redux/actionthree'; 
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 
 import './form.css';
 const useStyles = makeStyles((theme) => ({
@@ -22,19 +22,21 @@ export default function ColorTextFields() {
   const name = useRef();
   const salary = useRef();
   const age = useRef();
-  const handleSubmit = e => {
+
+  async function handleSubmit(e){
     const obj ={
         name:name.current.value,
         salary:salary.current.value,
         age:age.current.value
     }
+    dispatch(await Addmember(JSON.stringify(obj)));
+    document.getElementById("myform").reset();
+    alert('Member added successfullyy!!!');
     
-    dispatch(Addmember(JSON.stringify(obj)));
-    console.log(name.current.value,salary.current.value,age.current.value);
   };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form className={classes.root} noValidate autoComplete="off" id="myform">
        <TextField
         name="name"
         type="text"

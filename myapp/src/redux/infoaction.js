@@ -29,25 +29,12 @@ export function fetchInfoError(error) {
         error: error
     }
 }
-export function fetchInfoEPending() {
-    return {
-        type: EMPLOYEE_INFO_FETCH
-    }
-}
 
-export function fetchInfoESuccess(list,status) {
-    console.log("in action list is ",list);
+export function fetchInfoESuccess(response) {
+    console.log("here");
     return {
         type: EMPLOYEE_INFO_FETCH_SUCCESS,
-        info: list,
-        success:status
-    }
-}
-
-export function fetchInfoEError(error) {
-    return {
-        type: EMPLOYEE_INFO_FETCH_ERROR,
-        errori: error
+        response:response
     }
 }
 
@@ -60,7 +47,8 @@ export function addmemberaction() {
 export function addmembersucess(data) {
     return {
         type: ADD_MEMBER_SUCCESS,
-        data:data
+        response:data.status,
+        data:data.data
     }
 }
 

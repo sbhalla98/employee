@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './infostate.js';
 import thunk from 'redux-thunk';
-const store=createStore(reducer,applyMiddleware(thunk));
+import { composeWithDevTools } from 'redux-devtools-extension';
+// import logger from "redux-logger"
+const store=createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 export default store;

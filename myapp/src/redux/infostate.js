@@ -1,23 +1,20 @@
-import {EMPLOYEE_FETCH, EMPLOYEE_FETCH_SUCCESS, EMPLOYEE_FETCH_ERROR,EMPLOYEE_INFO_FETCH,EMPLOYEE_INFO_FETCH_SUCCESS,EMPLOYEE_INFO_FETCH_ERROR, ADD_MEMBER,ADD_MEMBER_ERROR,ADD_MEMBER_SUCCESS} from './infoaction';
+import {EMPLOYEE_FETCH, EMPLOYEE_FETCH_SUCCESS, EMPLOYEE_FETCH_ERROR,EMPLOYEE_INFO_FETCH_SUCCESS, ADD_MEMBER,ADD_MEMBER_ERROR,ADD_MEMBER_SUCCESS} from './infoaction';
 import { combineReducers } from 'redux'
 
 const initialState = {
     pending: false,
     list: [],
-    error: null
-}
-const particularempstate = {
-    isloading:false,
-    errori:null,
-    info:{},
-    success:false
-}
-const addmember ={
+    error: null,
     flag:false,
     response:"",
-    error:""
+    erroradd:"",
+    empInfo:[]
 }
 export function employeeInfoReducer(state = initialState, action) {
+    var temp = !state.flag;
+    if(action.data){
+        var emplist=state.list.concat({ id:(action.data.id).toString(),employee_name:action.data.name,employee_salary:action.data.salary,employee_age:action.data.age });
+    }
     switch(action.type) {
         case EMPLOYEE_FETCH: 
             return {
@@ -36,13 +33,6 @@ export function employeeInfoReducer(state = initialState, action) {
                 pending: false,
                 error: action.error
             }
-        default: 
-            return state;
-    }
-}
-export function addmemberReducer(state = addmember, action) {
-    var temp = !state.flag;
-    switch(action.type) {
         case ADD_MEMBER: 
             return {
                 ...state,
@@ -51,44 +41,23 @@ export function addmemberReducer(state = addmember, action) {
         case ADD_MEMBER_SUCCESS: 
             return {
                 ...state,
-                response: action.data
+                response: action.response,
+                list:emplist
             }
         case ADD_MEMBER_ERROR: 
             return {
                 ...state,
                 response: action.error
             }
-        default: 
-            return state;
-    }
-}
-export function particularemployeeInfoReducer(state = particularempstate, action) {
-    switch(action.type) {
-        case EMPLOYEE_INFO_FETCH: 
-            return {
-                ...state,
-                isloading: true
-            }
         case EMPLOYEE_INFO_FETCH_SUCCESS:
-            console.log("action",action);
             return {
-                ...state,
-                isloading: false,
-                info: action.info,
-                success:action.success
-            }
-        case EMPLOYEE_INFO_FETCH_ERROR:
-            return {
-                ...state,
-                isloading: false,
-                errori: action.error
+                    ...state,
+                    empInfo:action.response
             }
         default: 
             return state;
     }
 }
 export default combineReducers({
-    employeeInfoReducer,
-    particularemployeeInfoReducer,
-    addmemberReducer
+    employeeInfoReducer
   })

@@ -10,7 +10,6 @@ import { NavLink } from 'react-router-dom';
 import {addmemberaction} from '../redux/infoaction';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
 import Button from '@material-ui/core/Button';
 
 import Form from './form';
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const MyComponent = (props) => {
     const dispatch = useDispatch();
     const pending = useSelector(state=>state.employeeInfoReducer.pending);
-    const addmember = useSelector(state=>state.addmemberReducer.flag);
+    const addmember = useSelector(state=>state.employeeInfoReducer.flag);
     const classes = useStyles();
     const style = pending ? {}:{display : 'none'};
     const addmemberstyle = addmember ? {}:{display : 'none'};
@@ -38,7 +37,7 @@ const MyComponent = (props) => {
         const emplist = useSelector(state=>state.employeeInfoReducer.list);
         return (
             <div className='container'>
-            <Header></Header>
+            <Header title="EMPLOYEE LIST"></Header>
             <div style={style}>It is loading</div>
             <table id="employeedetails" className={classes.table} aria-label="customized table">
                 <thead>
