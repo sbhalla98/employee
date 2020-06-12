@@ -1,4 +1,4 @@
-import {EMPLOYEE_FETCH, EMPLOYEE_FETCH_SUCCESS, EMPLOYEE_FETCH_ERROR,EMPLOYEE_INFO_FETCH_SUCCESS, ADD_MEMBER,ADD_MEMBER_ERROR,ADD_MEMBER_SUCCESS} from './infoaction';
+import {EMPLOYEE_FETCH, EMPLOYEE_FETCH_SUCCESS, EMPLOYEE_FETCH_ERROR,EMPLOYEE_INFO_FETCH_SUCCESS, ADD_MEMBER,ADD_MEMBER_ERROR,ADD_MEMBER_SUCCESS,DELETE_USER} from '../actions/action';
 import { combineReducers } from 'redux'
 
 const initialState = {
@@ -11,10 +11,6 @@ const initialState = {
     empInfo:[]
 }
 export function employeeInfoReducer(state = initialState, action) {
-    var temp = !state.flag;
-    if(action.data){
-        var emplist=state.list.concat({ id:(action.data.id).toString(),employee_name:action.data.name,employee_salary:action.data.salary,employee_age:action.data.age });
-    }
     switch(action.type) {
         case EMPLOYEE_FETCH: 
             return {
@@ -34,11 +30,13 @@ export function employeeInfoReducer(state = initialState, action) {
                 error: action.error
             }
         case ADD_MEMBER: 
+            var temp = !state.flag;
             return {
                 ...state,
                 flag: temp
             }
         case ADD_MEMBER_SUCCESS: 
+            var emplist=state.list.concat({ id:(action.data.id).toString(),employee_name:action.data.name,employee_salary:action.data.salary,employee_age:action.data.age });
             return {
                 ...state,
                 response: action.response,
@@ -53,6 +51,14 @@ export function employeeInfoReducer(state = initialState, action) {
             return {
                     ...state,
                     empInfo:action.response
+            }
+        case DELETE_USER:
+            var result=state.list.filter(function(user,index){
+                return user.id!==action.id;
+            })
+            return {
+                ...state,
+                list:result
             }
         default: 
             return state;

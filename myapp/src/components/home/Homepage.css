@@ -19,7 +19,7 @@ tr:nth-child(odd){
 }
 .form{
     border: 2px solid #b0bec5;
-    margin: 5% 5%;
+    margin: 5% 15% 0 0;
     padding: 2%;
     width:20%;
     float: right;
@@ -27,7 +27,7 @@ tr:nth-child(odd){
 .btn{
     position: relative;
     top:20px;
-    left: 10%;
+    left: 5%;
 }
 .container{
     width: 100%;

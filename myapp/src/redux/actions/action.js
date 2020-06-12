@@ -2,13 +2,13 @@ export const EMPLOYEE_FETCH = 'EMPLOYEE_FETCH_PENDING';
 export const EMPLOYEE_FETCH_SUCCESS = 'EMPLOYEE_FETCH_SUCCESS';
 export const EMPLOYEE_FETCH_ERROR = 'EMPLOYEE_FETCH_ERROR';
 
-export const EMPLOYEE_INFO_FETCH = 'EMPLOYEE_INFO_FETCH_PENDING';
 export const EMPLOYEE_INFO_FETCH_SUCCESS = 'EMPLOYEE_INFO_FETCH_SUCCESS';
-export const EMPLOYEE_INFO_FETCH_ERROR = 'EMPLOYEE_INFO_FETCH_ERROR';
 
 export const ADD_MEMBER = 'ADD_MEMBER';
 export const ADD_MEMBER_SUCCESS = 'ADD_MEMBER_SUCCESS';
 export const ADD_MEMBER_ERROR = 'ADD_MEMBER_ERROR';
+
+export const DELETE_USER = 'DELETE_USER';
 
 export function fetchInfoPending() {
     return {
@@ -31,7 +31,6 @@ export function fetchInfoError(error) {
 }
 
 export function fetchInfoESuccess(response) {
-    console.log("here");
     return {
         type: EMPLOYEE_INFO_FETCH_SUCCESS,
         response:response
@@ -56,5 +55,12 @@ export function addmembererror(error) {
     return {
         type: ADD_MEMBER_ERROR,
         error:error
+    }
+}
+
+export function deleteemployee(id) {
+    return {
+        type: DELETE_USER,
+        id:id
     }
 }

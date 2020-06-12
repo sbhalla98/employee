@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import Addmember from '../redux/actionthree'; 
+import {adduser} from '../../redux/methods/method'; 
 import { useDispatch } from 'react-redux';
 
 import './form.css';
@@ -29,12 +29,14 @@ export default function ColorTextFields() {
         salary:salary.current.value,
         age:age.current.value
     }
-    dispatch(await Addmember(JSON.stringify(obj)));
+    dispatch(await adduser(JSON.stringify(obj)));
     document.getElementById("myform").reset();
-    alert('Member added successfullyy!!!');
-    
+    alertmessage(); 
   };
 
+  function alertmessage(){
+    alert('Member added successfullyy!!!'); 
+  }
   return (
     <form className={classes.root} noValidate autoComplete="off" id="myform">
        <TextField
@@ -64,14 +66,13 @@ export default function ColorTextFields() {
         color="secondary"
         inputRef={age}
       /><br/>
-         <div className="btn">
-            <div className={classes.root} >
-      
-                <Button variant="contained" size="large" color="secondary" onClick={handleSubmit}>
-                    Add a Member
-                </Button>
-            </div>
-            </div>
+      <div className="btn">
+        <div className={classes.root} >
+          <Button variant="contained" size="large" color="secondary" onClick={handleSubmit}>
+              Submit
+          </Button>
+        </div>
+      </div>
     </form>
   );
 }
