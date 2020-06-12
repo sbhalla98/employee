@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 import Form from '../form/form';
+import Load from '../load/loading';
 import Header from '../header/header';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +30,6 @@ const MyComponent = (props) => {
     const pending = useSelector(state=>state.employeeInfoReducer.pending);
     const addmember = useSelector(state=>state.employeeInfoReducer.flag);
     const classes = useStyles();
-    const style = pending ? {}:{display : 'none'};
     const addmemberstyle = addmember ? {}:{display : 'none'};
         useEffect(() => {
         dispatch(fetchProducts());
@@ -39,7 +39,9 @@ const MyComponent = (props) => {
         return (
             <div className='container'>
                 <Header title="EMPLOYEE LIST"></Header>
-                <div style={style}>It is loading</div>
+                {pending && <div><Load message="Processing wait ....."></Load></div>}
+                {!pending &&
+                <div>
                 <table id="employeedetails" className={classes.table} aria-label="customized table">
                     <thead>
                     <tr>
@@ -67,6 +69,8 @@ const MyComponent = (props) => {
                     <Form></Form>
                 </div>
                 </div>
+                </div>
+            }
             </div>
         )
 }

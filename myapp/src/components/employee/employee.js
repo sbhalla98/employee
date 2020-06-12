@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 
 import './employee.css';
 import Header from '../header/header';
+import Load from '../load/loading';
 import { fetchInfoESuccess } from '../../redux/actions/action.js';
 import {useSelector} from 'react-redux';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 const Employee = (props) => {
         const dispatch = useDispatch();
@@ -25,8 +27,9 @@ const Employee = (props) => {
         return (
             <div>
                 <Header title="EMPLOYEE INFORMATION"></Header>
+                <NavLink to="/"> <span>back</span> </NavLink>
             { !empobj &&
-                <div>Api doesnot call</div>
+                <div><Load message="Call Api"></Load></div>
             }
             { empobj &&
             <div className="empInfo">
