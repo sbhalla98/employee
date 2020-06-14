@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ColorTextFields(props) {
     const classes = useStyles();
   return (
-    <div class="load">
+    <div className="load">
         <div className={classes.root}>
             <CircularProgress/>
             <div>{props.message}</div>

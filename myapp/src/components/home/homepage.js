@@ -12,6 +12,7 @@ import { NavLink } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Form from '../form/form';
 import Load from '../load/loading';
@@ -52,8 +53,7 @@ const MyComponent = (props) => {
                     <tbody>
                         {emplist.map((user,index) =><tr key={user.id}>
                             <td> <NavLink to={"/emp/"+user.id} exact staticcontext={user.id} style={{textDecoration: 'none',color:'black'}} activeStyle={{textDecoration: 'none',color: 'black'}}> {user.employee_name}</NavLink></td>
-                            <td> <Button variant="contained" size="small" onClick={()=>dispatch(deleteuser(user.id))} color="secondary">Delete</Button></td></tr>
-                
+                            <td> <Button variant="contained" size="small" onClick={async ()=>{ await dispatch(deleteuser(user.id)); alert('Employee Deleted sucessfully!!')}} color="secondary">Delete</Button></td></tr>
                         )}
                     </tbody>
                 </table>

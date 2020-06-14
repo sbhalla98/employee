@@ -8,7 +8,8 @@ const initialState = {
     flag:false,
     response:"",
     erroradd:"",
-    empInfo:[]
+    empInfo:[],
+    loading : true
 }
 export function employeeInfoReducer(state = initialState, action) {
     switch(action.type) {
@@ -58,6 +59,7 @@ export function employeeInfoReducer(state = initialState, action) {
             })
             return {
                 ...state,
+                loading : false,
                 list:result
             }
         default: 

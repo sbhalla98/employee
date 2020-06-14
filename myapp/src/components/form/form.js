@@ -2,6 +2,7 @@ import React ,{useRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { green,grey } from '@material-ui/core/colors';
 
 import {adduser} from '../../redux/methods/method'; 
 import { useDispatch } from 'react-redux';
@@ -68,7 +69,7 @@ export default function ColorTextFields() {
       /><br/>
       <div className="btn">
         <div className={classes.root} >
-          <Button variant="contained" size="large" color="secondary" onClick={handleSubmit}>
+          <Button variant="contained" size="large" style={{ backgroundColor: green[500],color:grey[50] }} onClick={handleSubmit}>
               Submit
           </Button>
         </div>

@@ -5,13 +5,14 @@ import Header from '../header/header';
 import Load from '../load/loading';
 import { fetchInfoESuccess } from '../../redux/actions/action.js';
 import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 
 const Employee = (props) => {
         const dispatch = useDispatch();
         const emplist = useSelector(state=>state.employeeInfoReducer.list);
         var empobj = useSelector(state=>state.employeeInfoReducer.empInfo);
+        const history = useHistory();
 
         useEffect(() => {
             var empobj;
@@ -24,10 +25,13 @@ const Employee = (props) => {
             dispatch(fetchInfoESuccess(empobj));
 
         },[]);
+        const navigatetohome=()=>{
+            history.push("/");
+        }
         return (
             <div>
                 <Header title="EMPLOYEE INFORMATION"></Header>
-                <NavLink to="/"> <span>back</span> </NavLink>
+                <button onClick={navigatetohome} className="historybtn">go back</button>
             { !empobj &&
                 <div><Load message="Call Api"></Load></div>
             }
